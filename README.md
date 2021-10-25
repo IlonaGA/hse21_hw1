@@ -79,3 +79,9 @@ def amount(contig):
     print('Длина самого длинного контига: ', max(length_array))
     print('N50: ', N50)
 ```
+
+```python
+contig_file = open('Poil_contig.fa')
+contig = contig_file.readlines()
+amount(contig)
+```
