@@ -81,7 +81,7 @@ def analysis(contig):
 ```
 
 ```python
-contig_file = open('Poil_contig.fa')
+contig_file = open('Poil_contig.fa', 'r')
 contig = contig_file.readlines()
 analysis(contig)
 ```
