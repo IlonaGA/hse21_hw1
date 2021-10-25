@@ -72,7 +72,8 @@ def analysis(contig):
     length_array = np.asarray(length_array)
     length_array = np.sort(length_array)[::-1]
     value = np.sum(length_array) / 2
-    N50 = length_array[np.cumsum(length_array) <= value][-1]
+    
+    N50 = length_array[np.cumsum(length_array) >= value][0]
     
     print('Общее количество контигов: ', counter)
     print('Суммарная длина контигов: ', length)
@@ -97,4 +98,39 @@ N50:  55863
 Сбор скаффолдов:
 ```
 time platanus scaffold -o Poil -t 2 -c Poil_contig.fa -IP1 re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed -OP2 re_oilMP_S4_L001_R1_001.fastq.int_trimmed re_oilMP_S4_L001_R2_001.fastq.int_trimmed 2> scaffold.log
+```
+Анализ полученных скаффолдов:
+```python
+import numpy as np
+```
+
+```python
+def analysis(scaffold):
+    counter = 0
+    length = 0
+    length_array = []
+    for line in contig:
+        if line[0] == '>':
+            counter += 1
+            length += int(line.split('_')[1][3:])
+            length_array.append(int(line.split('_')[1][3:]))
+
+    length_array = np.asarray(length_array)
+    length_array = np.sort(length_array)[::-1]
+    value = np.sum(length_array) / 2
+    
+    N50 = length_array[np.cumsum(length_array) >= value][0]
+    
+    print('Общее количество скаффолдов: ', counter)
+    print('Суммарная длина скаффолдов: ', length)
+    print('Длина самого длинного скаффолда: ', max(length_array))
+    print('N50: ', N50)
+```
+
+Результат:
+```
+Общее количество скаффолдов:  72
+Суммарная длина скаффолдов:  3875885
+Длина самого длинного скаффолда:  3831756
+N50:  3831756
 ```
