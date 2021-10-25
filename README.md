@@ -109,7 +109,7 @@ def analysis(scaffold):
     counter = 0
     length = 0
     length_array = []
-    for line in contig:
+    for line in scaffold:
         if line[0] == '>':
             counter += 1
             length += int(line.split('_')[1][3:])
@@ -134,3 +134,21 @@ def analysis(scaffold):
 Длина самого длинного скаффолда:  3831756
 N50:  3831756
 ```
+
+Самый длинный скаффолд:
+```python
+for line in scaffold:
+    if int(line.split('_')[1][3:]) == 3831756:
+        print(line)
+        break
+```
+Получим: 
+```
+>scaffold1_len3831756_cov232
+```
+
+```bash
+echo scaffold1_len3831756_cov232 > max_scaffold.txt
+seqtk subseq Poil_scaffold.fa max_scaffold.txt > max_scaffold.fa
+```
+
