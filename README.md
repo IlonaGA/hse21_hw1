@@ -45,4 +45,10 @@ multiqc -o trimmed_multiqc trimmed_fastqc
 После:
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_general_stats.png?raw=true)
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_mean_quality_scores.png?raw=true)
-![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_adapter_conten.png?raw=true)
+![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_adapter_content.png?raw=true)
+
+## Этап 3 ###
+Сбор контигов:
+```
+time platanus assemble -o Poil -t 2 -m 28 -f re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed 2> assembl.log
+```
