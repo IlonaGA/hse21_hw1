@@ -52,7 +52,7 @@ multiqc -o trimmed_multiqc trimmed_fastqc
 3) Были отрезаны адаптеры (см. Adapter content). 
 
 ## Этап 3
-Код находится по [ссылке](https://github.com/IlonaGA/hse21_hw1/blob/main/src/Analysis.ipynb)
+Код находится по [ссылке](https://github.com/IlonaGA/hse21_hw1/blob/main/src/Analysis.ipynb).
 ### Контиги
 Сбор контигов:
 ```bash
