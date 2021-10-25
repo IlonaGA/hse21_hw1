@@ -14,3 +14,9 @@ seqtk sample -s1304 oilMP_S4_L001_R2_001.fastq 1500000 > re_oilMP_S4_L001_R2_001
 mkdir fastq
 ls re*.fastq | xargs -P 4 -tI{} fastqc -o fastqc {}
 ```
+
+Запуск multiqc:
+```
+mkdir multiqc
+multiqc -o multiqc fastqc
+```
