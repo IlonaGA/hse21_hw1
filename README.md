@@ -47,7 +47,7 @@ multiqc -o trimmed_multiqc trimmed_fastqc
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_mean_quality_scores.png?raw=true)
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_adapter_content.png?raw=true)
 
-## Этап 3 ###
+## Этап 3 ##
 Сбор контигов:
 ```bash
 time platanus assemble -o Poil -t 2 -m 28 -f re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed 2> assembl.log
@@ -74,7 +74,7 @@ def amount(contig):
     value = np.sum(length_array) / 2
     N50 = length_array[np.cumsum(length_array) <= value][-1]
     
-    print('Общее количесвтво контигов: ', counter)
+    print('Общее количество контигов: ', counter)
     print('Суммарная длина контигов: ', length)
     print('Длина самого длинного контига: ', max(length_array))
     print('N50: ', N50)
@@ -84,4 +84,17 @@ def amount(contig):
 contig_file = open('Poil_contig.fa')
 contig = contig_file.readlines()
 amount(contig)
+```
+
+Результат:
+```
+Общее количество контигов:  620
+Суммарная длина контигов:  3926318
+Длина самого длинного контига:  179307
+N50:  55863
+```
+
+Сбор скаффолдов:
+```
+time platanus scaffold -o Poil -t 2 -c Poil_contig.fa -IP1 re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed -OP2 re_oilMP_S4_L001_R1_001.fastq.int_trimmed re_oilMP_S4_L001_R2_001.fastq.int_trimmed 2> scaffold.log
 ```
