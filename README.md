@@ -52,3 +52,30 @@ multiqc -o trimmed_multiqc trimmed_fastqc
 ```
 time platanus assemble -o Poil -t 2 -m 28 -f re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed 2> assembl.log
 ```
+
+Анализ полученных контигов:
+```
+import numpy as np
+```
+
+```
+def amount(contig):
+    counter = 0
+    length = 0
+    length_array = []
+    for line in contig:
+        if line[0] == '>':
+            counter += 1
+            length += int(line.split('_')[1][3:])
+            length_array.append(int(line.split('_')[1][3:]))
+
+    length_array = np.asarray(length_array)
+    length_array = np.sort(length_array)[::-1]
+    value = np.sum(length_array) / 2
+    N50 = length_array[np.cumsum(length_array) <= value][-1]
+    
+    print('Общее количесвтво контигов: ', counter)
+    print('Суммарная длина контигов: ', length)
+    print('Длина самого длинного контига: ', max(length_array))
+    print('N50: ', N50)
+```
