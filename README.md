@@ -20,3 +20,9 @@ ls re*.fastq | xargs -P 4 -tI{} fastqc -o fastqc {}
 mkdir multiqc
 multiqc -o multiqc fastqc
 ```
+
+Запуск platanus:
+```
+platanus_trim re_oil_R1.fastq re_oil_R2.fastq
+platanus_internal_trim re_oilMP_S4_L001_R1_001.fastq re_oilMP_S4_L001_R2_001.fastq
+```
