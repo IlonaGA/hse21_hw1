@@ -59,7 +59,7 @@ import numpy as np
 ```
 
 ```python
-def amount(contig):
+def analysis(contig):
     counter = 0
     length = 0
     length_array = []
@@ -83,7 +83,7 @@ def amount(contig):
 ```python
 contig_file = open('Poil_contig.fa')
 contig = contig_file.readlines()
-amount(contig)
+analysis(contig)
 ```
 
 Результат:
