@@ -1,7 +1,7 @@
 ## Этап 1 ##
 Выбор случайных ридов проводился командами:
 
-```
+```bash
 seqtk sample -s1304 oil_R1.fastq 5000000 > re_oil_R1.fastq
 seqtk sample -s1304 oil_R2.fastq 5000000 > re_oil_R2.fastq
 seqtk sample -s1304 oilMP_S4_L001_R1_001.fastq 1500000 > re_oilMP_S4_L001_R1_001.fastq
@@ -10,24 +10,24 @@ seqtk sample -s1304 oilMP_S4_L001_R2_001.fastq 1500000 > re_oilMP_S4_L001_R2_001
 
 Запуск fastqc:
 
-```
+```bash
 mkdir fastq
 ls re*.fastq | xargs -P 4 -tI{} fastqc -o fastqc {}
 ```
 
 Запуск multiqc:
-```
+```bash
 mkdir multiqc
 multiqc -o multiqc fastqc
 ```
 
 Запуск platanus:
-```
+```bash
 platanus_trim re_oil_R1.fastq re_oil_R2.fastq
 platanus_internal_trim re_oilMP_S4_L001_R1_001.fastq re_oilMP_S4_L001_R2_001.fastq
 ```
 
-```
+```bash
 mkdir trimmed_fastqc
 ls *trimmed | xargs -P 4 -tI{} fastqc -o trimmed_fastqc {}
 mkdir trimmed_multiqc
@@ -49,16 +49,16 @@ multiqc -o trimmed_multiqc trimmed_fastqc
 
 ## Этап 3 ###
 Сбор контигов:
-```
+```bash
 time platanus assemble -o Poil -t 2 -m 28 -f re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed 2> assembl.log
 ```
 
 Анализ полученных контигов:
-```
+```python
 import numpy as np
 ```
 
-```
+```python
 def amount(contig):
     counter = 0
     length = 0
