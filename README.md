@@ -43,3 +43,6 @@ multiqc -o trimmed_multiqc trimmed_fastqc
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Adapter_content.png?raw=true)
 
 После:
+![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_general_stats.png?raw=true)
+![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_mean_quality_scores.png?raw=true)
+![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_adapter_conten.png?raw=true)
