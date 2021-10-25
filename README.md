@@ -53,7 +53,7 @@ multiqc -o trimmed_multiqc trimmed_fastqc
 
 ## Этап 3
 ### Контиги
-Сбор *контигов*:
+Сбор контигов:
 ```bash
 time platanus assemble -o Poil -t 2 -m 28 -f re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed 2> assembl.log
 ```
@@ -100,7 +100,7 @@ analysis(contig)
 N50:  55863
 ```
 ### Скаффолды
-Сбор *скаффолдов*:
+Сбор скаффолдов:
 ```
 time platanus scaffold -o Poil -t 2 -c Poil_contig.fa -IP1 re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed -OP2 re_oilMP_S4_L001_R1_001.fastq.int_trimmed re_oilMP_S4_L001_R2_001.fastq.int_trimmed 2> scaffold.log
 ```
