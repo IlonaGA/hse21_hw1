@@ -1,5 +1,5 @@
-## Этап 1 ##
-Выбор случайных ридов проводился командами:
+## Этап 1
+Был произведен выбор случайных ридов с помощью команд:
 
 ```bash
 seqtk sample -s1304 oil_R1.fastq 5000000 > re_oil_R1.fastq
@@ -9,7 +9,6 @@ seqtk sample -s1304 oilMP_S4_L001_R2_001.fastq 1500000 > re_oilMP_S4_L001_R2_001
 ```
 
 Запуск fastqc:
-
 ```bash
 mkdir fastq
 ls re*.fastq | xargs -P 4 -tI{} fastqc -o fastqc {}
@@ -34,20 +33,26 @@ mkdir trimmed_multiqc
 multiqc -o trimmed_multiqc trimmed_fastqc
 ```
 
-## Этап 2 ##
-### Сравнение результатов до/после ###
+## Этап 2
+### Сравнение результатов до/после 
 
-До:
+#### До:
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/MultiQC_general_stats.png?raw=true)
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Mean_quality_scores.png?raw=true)
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Adapter_content.png?raw=true)
 
-После:
+#### После:
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_general_stats.png?raw=true)
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_mean_quality_scores.png?raw=true)
 ![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/Trimmed_adapter_content.png?raw=true)
 
-## Этап 3 ##
+#### Выводы:
+1) Заметно уменьшилась длина последовательностей (см. General statistics, Length).
+2) Улучшилось качество: теперь только зеленая зона (см. Mean quality scores).
+3) Были отрезаны адаптеры (см. Adapter content). 
+
+## Этап 3
+### Контиги
 Сбор контигов:
 ```bash
 time platanus assemble -o Poil -t 2 -m 28 -f re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed 2> assembl.log
@@ -94,7 +99,7 @@ analysis(contig)
 Длина самого длинного контига:  179307
 N50:  55863
 ```
-
+### Скаффолды
 Сбор скаффолдов:
 ```
 time platanus scaffold -o Poil -t 2 -c Poil_contig.fa -IP1 re_oil_R1.fastq.trimmed re_oil_R2.fastq.trimmed -OP2 re_oilMP_S4_L001_R1_001.fastq.int_trimmed re_oilMP_S4_L001_R2_001.fastq.int_trimmed 2> scaffold.log
@@ -157,7 +162,7 @@ for line in scaffold:
 echo scaffold1_len3831756_cov232 > max_scaffold.txt
 seqtk subseq Poil_scaffold.fa max_scaffold.txt > max_scaffold.fa
 ```
-
+### Гэпы
 Количество и общая длина гэпов:
 ```python
 max_scaffold_file = open('max_scaffold.fa', 'r')
@@ -199,5 +204,6 @@ print('Общая длина гэпов: ', scaffold_lowgap[1].count('N'))
 Количество гэпов:  8
 Общая длина гэпов:  1500
 ```
+Видно, что значительно количество гэпов, действительно, было удалено.
 
 
