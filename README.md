@@ -152,3 +152,12 @@ echo scaffold1_len3831756_cov232 > max_scaffold.txt
 seqtk subseq Poil_scaffold.fa max_scaffold.txt > max_scaffold.fa
 ```
 
+Количество гэпов:
+```python
+max_scaffold_file = open('max_scaffold.fa', 'r')
+max_scaffold = max_scaffold_file.readlines()
+max_scaffold[1].count('N')
+```
+Результат:
+6083
+
