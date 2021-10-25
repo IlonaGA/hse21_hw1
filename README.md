@@ -1,4 +1,4 @@
-### Этап 1 ###
+## Этап 1 ##
 Выбор случайных ридов проводился командами:
 
 ```
@@ -34,5 +34,8 @@ mkdir trimmed_multiqc
 multiqc -o trimmed_multiqc trimmed_fastqc
 ```
 
-### Этап 2 ###
-Сравнение результатов до/после
+## Этап 2 ##
+### Сравнение результатов до/после ###
+
+До:
+![alt text](https://github.com/IlonaGA/hse21_hw1/blob/main/Images/MultiQC_general_stats.png?raw=true)
